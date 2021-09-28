@@ -15,21 +15,6 @@ jobs:
         with:
           node-version: 14.x
       - run: npm ci
-
-  build:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
       - run: npm run build
-
-  lint:
-    needs: setup 
-    runs-on: ubuntu-latest
-    steps:
       - run: npm run lint
-
-  test:
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
       - run: npm run test -- --watch=false --browsers=ChromeHeadless
