@@ -1,30 +1,23 @@
 # NgxAsyncTemplate
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.10.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.14.
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component component-name --project ngx-async-template` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngx-async-template`.
+> Note: Don't forget to add `--project ngx-async-template` or else it will be added to the default project in your `angular.json` file. 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build ngx-async-template` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Publishing
+
+After building your library with `ng build ngx-async-template`, go to the dist folder `cd dist/ngx-async-template` and run `npm publish`.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Auto Publish
-
-Any merge to the main branch with a new version number in the `package.json` will publish the package to npm.
+Run `ng test ngx-async-template` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Further help
 

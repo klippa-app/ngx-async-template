@@ -5,19 +5,19 @@
   "projects": {
     "ngx-async-template": {
       "projectType": "library",
-      "root": "projects/ngx-async-template",
-      "sourceRoot": "projects/ngx-async-template/src",
+      "root": "./",
+      "sourceRoot": "./src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/ngx-async-template/tsconfig.lib.json",
-            "project": "projects/ngx-async-template/ng-package.json"
+            "tsConfig": "./tsconfig.lib.json",
+            "project": "./ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ngx-async-template/tsconfig.lib.prod.json"
+              "tsConfig": "./tsconfig.lib.prod.json"
             }
           }
         }

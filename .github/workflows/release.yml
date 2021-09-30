@@ -13,9 +13,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14.x
-      - run: npm install
+      - run: npm ci --production=false
       - run: npm run build
       - uses: JS-DevTools/npm-publish@v1
         with:
-          package: ./dist/ngx-async-template/package.json
+          package: ./dist/package.json
           token: ${{ secrets.NPM_TOKEN }}
