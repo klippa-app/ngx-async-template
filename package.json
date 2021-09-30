@@ -1,14 +1,12 @@
 {
   "name": "@klippa/ngx-async-template",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint"
-  },
-  "peerDependencies": {
   },
   "dependencies": {
     "tslib": "^2.0.0"

@@ -1,14 +1,14 @@
 import { Component, ContentChildren, Directive, Input, QueryList, TemplateRef } from '@angular/core';
 
-@Directive({ selector: '[app-async-all]' })
+@Directive({ selector: '[ngx-async-all]' })
 export class AsyncAllStatesComponent {}
-@Directive({ selector: '[app-async-inactive]' })
+@Directive({ selector: '[ngx-async-inactive]' })
 export class AsyncInactiveComponent {}
-@Directive({ selector: '[app-async-pending]' })
+@Directive({ selector: '[ngx-async-pending]' })
 export class AsyncPendingComponent {}
-@Directive({ selector: '[app-async-success]' })
+@Directive({ selector: '[ngx-async-success]' })
 export class AsyncSuccessComponent {}
-@Directive({ selector: '[app-async-error]' })
+@Directive({ selector: '[ngx-async-error]' })
 export class AsyncErrorComponent {}
 
 @Component({
