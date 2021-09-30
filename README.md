@@ -28,7 +28,6 @@ import { NgxAsyncTemplateModule } from '@klippa/ngx-async-template';
 	exports: [
 		NgxAsyncTemplateModule,
 	],
-	providers: [{ provide: NgbDateParserFormatter, useClass: DateFormatComponent }],
 })
 export class UiModule {}
 ```
