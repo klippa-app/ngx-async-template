@@ -1,0 +1,23 @@
+<ng-container>
+  <ng-container *ngFor="let tpl of allStates?.toArray()" [ngTemplateOutlet]="tpl" [ngTemplateOutletContext]="{ status: promiseStatus, value: promiseValue }"></ng-container>
+  <ng-container *ngIf="promiseStatus === 'inactive'" >
+    <ng-container *ngFor="let tpl of inactive?.toArray()" [ngTemplateOutlet]="tpl" [ngTemplateOutletContext]="{ status: promiseStatus }"></ng-container>
+  </ng-container>
+  <ng-container *ngIf="promiseStatus === 'pending'">
+    <ng-container *ngFor="let tpl of pending?.toArray()" [ngTemplateOutlet]="tpl" [ngTemplateOutletContext]="{ status: promiseStatus }"></ng-container>
+  </ng-container>
+  <ng-container *ngIf="promiseStatus === 'success'">
+    <ng-container
+      *ngFor="let tpl of success?.toArray()"
+      [ngTemplateOutlet]="tpl"
+      [ngTemplateOutletContext]="{ value: promiseValue, status: promiseStatus }"
+    ></ng-container>
+  </ng-container>
+  <ng-container *ngIf="promiseStatus === 'error'">
+    <ng-container
+      *ngFor="let tpl of error?.toArray()"
+      [ngTemplateOutlet]="tpl"
+      [ngTemplateOutletContext]="{ errorMessages: promiseErrors, status: promiseStatus }"
+    ></ng-container>
+  </ng-container>
+</ng-container>

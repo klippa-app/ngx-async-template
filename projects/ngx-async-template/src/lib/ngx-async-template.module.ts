@@ -1,16 +1,34 @@
-import { NgModule } from '@angular/core';
-import { NgxAsyncTemplateComponent } from './ngx-async-template.component';
-
-
+import {NgModule} from '@angular/core';
+import {
+  NgxAsyncTemplateComponent,
+  AsyncAllStatesComponent,
+  AsyncInactiveComponent,
+  AsyncPendingComponent,
+  AsyncSuccessComponent,
+  AsyncErrorComponent
+} from './ngx-async-template.component';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
-  declarations: [
-    NgxAsyncTemplateComponent
-  ],
   imports: [
+    CommonModule
+  ],
+  declarations: [
+    NgxAsyncTemplateComponent,
+    AsyncAllStatesComponent,
+    AsyncInactiveComponent,
+    AsyncPendingComponent,
+    AsyncSuccessComponent,
+    AsyncErrorComponent
   ],
   exports: [
-    NgxAsyncTemplateComponent
+    NgxAsyncTemplateComponent,
+    AsyncAllStatesComponent,
+    AsyncInactiveComponent,
+    AsyncPendingComponent,
+    AsyncSuccessComponent,
+    AsyncErrorComponent
   ]
 })
-export class NgxAsyncTemplateModule { }
+export class NgxAsyncTemplateModule {
+}
