@@ -18,6 +18,7 @@ export class AsyncErrorComponent {}
 })
 export class NgxAsyncTemplateComponent {
   @Input() promise: Promise<any> = null;
+  @Input() successStateOnReload: boolean = false; // when true, from the second (!) time the promise is loaded, we keep the previous success state with its data
   public promiseStatus: 'inactive' | 'pending' | 'success' | 'error' = 'inactive';
   public promiseValue: any;
   public promiseErrors: any;
@@ -31,11 +32,16 @@ export class NgxAsyncTemplateComponent {
   constructor() {}
 
   ngOnChanges(): void {
-    this.promiseValue = null;
     if (!this.promise) {
+      this.promiseValue = null;
       this.promiseStatus = 'inactive';
     } else {
-      this.promiseStatus = 'pending';
+      if (this.successStateOnReload && this.promiseStatus === 'success') {
+        // dont show the pending state
+      } else {
+        this.promiseValue = null;
+        this.promiseStatus = 'pending';
+      }
       this.promise.then(
         (res) => {
           this.promiseStatus = 'success';
