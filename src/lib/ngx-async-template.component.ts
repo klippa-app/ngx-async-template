@@ -42,14 +42,20 @@ export class NgxAsyncTemplateComponent {
         this.promiseValue = null;
         this.promiseStatus = 'pending';
       }
+
+      const originalPromise = this.promise;
       this.promise.then(
         (res) => {
-          this.promiseStatus = 'success';
-          this.promiseValue = res;
+          if(originalPromise === this.promise) {
+            this.promiseStatus = 'success';
+            this.promiseValue = res;
+          }
         },
         (res) => {
-          this.promiseStatus = 'error';
-          this.promiseErrors = res;
+          if(originalPromise === this.promise) {
+            this.promiseStatus = 'error';
+            this.promiseErrors = res;
+          }
         }
       );
     }
