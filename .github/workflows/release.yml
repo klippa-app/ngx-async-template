@@ -12,10 +12,11 @@ jobs:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
+          registry-url: 'https://registry.npmjs.org'
           node-version: 14.x
-      - run: npm ci --production=false
-      - run: npm run build
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          package: ./dist/package.json
-          token: ${{ secrets.NPM_TOKEN }}
+          always-auth: true
+      - run: yarn install --frozen-lockfile
+      - run: yarn build:prod
+      - run: yarn publish ./dist/klippa/ngx-enhancy-forms
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

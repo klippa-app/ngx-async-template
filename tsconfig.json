@@ -1,23 +1,11 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
-  "strictNullChecks": false,
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "strict": false,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
-    "paths": {
-      "ngx-async-template": [
-        "dist/ngx-async-template/ngx-async-template",
-        "dist/ngx-async-template"
-      ]
-    },
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
@@ -26,12 +14,11 @@
     "lib": [
       "es2018",
       "dom"
-    ]
-  },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": false,
-    "strictInputAccessModifiers": false,
-    "strictTemplates": false
+    ],
+    "paths": {
+      "@klippa/ngx-async-template": [
+        "projects/klippa/ngx-async-template/src/public-api.ts"
+      ]
+    }
   }
 }

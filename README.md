@@ -1,71 +1,27 @@
 # NgxAsyncTemplate
 
-Easily render templates based on the state of a promise:
-- inactive
-- pending
-- success
-- error
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
 
-# Install guide
+## Development server
 
-### yarn
-`yarn add @klippa/ngx-async-template`
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-### npm
-`npm install @klippa/ngx-async-template`
+## Code scaffolding
 
-## Import
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-I recommend importing the module in a generic ui module and then export it from there, so you can use the ngx-async-template everywhere in your app.
+## Build
 
-```js
-import { NgxAsyncTemplateModule } from '@klippa/ngx-async-template';
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-@NgModule({
-	imports: [
-		NgxAsyncTemplateModule,
-	],
-	exports: [
-		NgxAsyncTemplateModule,
-	],
-})
-export class UiModule {}
-```
+## Running unit tests
 
-# Example
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-```html
+## Running end-to-end tests
 
-<ngx-async-template [promise]="userPromise">
-  <ng-template ngx-async-inactive>
-    loading not yet started
-  </ng-template>
-  <ng-template ngx-async-pending>
-    loading
-  </ng-template>
-  <ng-template ngx-async-success let-users="value">
-    result is {{users}}
-  </ng-template>
-  <ng-template ngx-async-error let-myErrors="errorMessages">
-    something went wrong {{myErrors}}
-  </ng-template>
-  <ng-template ngx-async-all let-myState="status">
-    Always rendered, state is {{myState}}
-  </ng-template>
-</ngx-async-template>
-```
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-# Usage
+## Further help
 
-To render templates, use one or more of the following directives on a `ng-template`:
-
-- ngx-async-inactive
-- ngx-async-pending
-- ngx-async-success
-- ngx-async-error
-- ngx-async-all
-
-
-- You can extract the value of a successful promise by using `let-someVarName="value"` where `someVarName` can be any name you want.
-- To extract errors provided by a promise you can use `let-myErrors="errorMessages"` where `myErrors` can be any name you want.
-- You can also extract the status of a promise, which can be helpful if you have a template with multiple directives (`<ng-template ngx-async-inactive ngx-async-pending...`) with `let-myState="status"` where `myState` can be any name you want.
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
