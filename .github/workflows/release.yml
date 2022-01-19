@@ -17,6 +17,6 @@ jobs:
           always-auth: true
       - run: yarn install --frozen-lockfile
       - run: yarn build:prod
-      - run: yarn publish ./dist/klippa/ngx-enhancy-forms
+      - run: yarn publish ./dist/klippa/ngx-async-template
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
