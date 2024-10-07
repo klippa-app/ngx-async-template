@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, NgZone} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public testPromise = new Promise(resolve => setTimeout(resolve, 1000));
+  public testPromises = [];
+  renderIt = false;
+
+  constructor(private ngZone: NgZone) {
+
+  }
+
+  go() {
+    this.renderIt = true;
+    this.ngZone.runOutsideAngular(() => {
+      for (let i = 0; i < 100; i++) {
+        this.testPromises.push(new Promise((resolve) => {
+          setTimeout(() => {
+              resolve(i);
+          }, i * 10);
+        }));
+      }
+    });
+  }
 }

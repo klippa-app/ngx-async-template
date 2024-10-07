@@ -1,8 +1,14 @@
-<ngx-async-template [promise]="testPromise">
-  <ng-template ngx-async-success>
-    Resolved!
-  </ng-template>
-  <ng-template ngx-async-pending>
-    Loading...
-  </ng-template>
-</ngx-async-template>
+<button (click)="go()">go</button>
+<ng-container *ngIf="renderIt">
+  <ng-container *ngFor="let testPromise of testPromises">
+
+    <ngx-async-template [promise]="testPromise">
+      <ng-template ngx-async-success>
+        Resolved!
+      </ng-template>
+      <ng-template ngx-async-pending>
+        Loading...
+      </ng-template>
+    </ngx-async-template>
+  </ng-container>
+</ng-container>

@@ -1,15 +1,30 @@
-import { Component, ContentChildren, Directive, Input, QueryList, TemplateRef } from '@angular/core';
+import {Component, ContentChildren, Directive, Input, NgZone, QueryList, TemplateRef} from '@angular/core';
+import {debounce} from 'lodash';
 
-@Directive({ selector: '[ngx-async-all]' })
-export class AsyncAllStatesComponent {}
-@Directive({ selector: '[ngx-async-inactive]' })
-export class AsyncInactiveComponent {}
-@Directive({ selector: '[ngx-async-pending]' })
-export class AsyncPendingComponent {}
-@Directive({ selector: '[ngx-async-success]' })
-export class AsyncSuccessComponent {}
-@Directive({ selector: '[ngx-async-error]' })
-export class AsyncErrorComponent {}
+function triggerChangeDetection(ngZone: NgZone): void {
+  ngZone.run(() => {
+  });
+}
+
+@Directive({selector: '[ngx-async-all]'})
+export class AsyncAllStatesComponent {
+}
+
+@Directive({selector: '[ngx-async-inactive]'})
+export class AsyncInactiveComponent {
+}
+
+@Directive({selector: '[ngx-async-pending]'})
+export class AsyncPendingComponent {
+}
+
+@Directive({selector: '[ngx-async-success]'})
+export class AsyncSuccessComponent {
+}
+
+@Directive({selector: '[ngx-async-error]'})
+export class AsyncErrorComponent {
+}
 
 @Component({
   selector: 'ngx-async-template',
@@ -23,13 +38,26 @@ export class NgxAsyncTemplateComponent {
   public promiseValue: any;
   public promiseErrors: any;
 
-  @ContentChildren(AsyncAllStatesComponent, { read: TemplateRef }) allStates: QueryList<TemplateRef<any>>;
-  @ContentChildren(AsyncInactiveComponent, { read: TemplateRef }) inactive: QueryList<TemplateRef<any>>;
-  @ContentChildren(AsyncPendingComponent, { read: TemplateRef }) pending: QueryList<TemplateRef<any>>;
-  @ContentChildren(AsyncSuccessComponent, { read: TemplateRef }) success: QueryList<TemplateRef<any>>;
-  @ContentChildren(AsyncErrorComponent, { read: TemplateRef }) error: QueryList<TemplateRef<any>>;
+  @ContentChildren(AsyncAllStatesComponent, {read: TemplateRef}) allStates: QueryList<TemplateRef<any>>;
+  @ContentChildren(AsyncInactiveComponent, {read: TemplateRef}) inactive: QueryList<TemplateRef<any>>;
+  @ContentChildren(AsyncPendingComponent, {read: TemplateRef}) pending: QueryList<TemplateRef<any>>;
+  @ContentChildren(AsyncSuccessComponent, {read: TemplateRef}) success: QueryList<TemplateRef<any>>;
+  @ContentChildren(AsyncErrorComponent, {read: TemplateRef}) error: QueryList<TemplateRef<any>>;
 
-  constructor() {}
+  static runCycle = debounce((ngZone: NgZone) => {
+    triggerChangeDetection(ngZone);
+  }, 300);
+
+  private runOutsideZone<S>(fn: (...args: any[]) => S): Promise<S> {
+    return this.ngZone.runOutsideAngular(async () => {
+      const r = await fn();
+      NgxAsyncTemplateComponent.runCycle(this.ngZone);
+      return r;
+    });
+  }
+
+  constructor(private ngZone: NgZone) {
+  }
 
   ngOnChanges(): void {
     if (!this.promise) {
@@ -44,20 +72,24 @@ export class NgxAsyncTemplateComponent {
       }
 
       const originalPromise = this.promise;
-      this.promise.then(
-        (res) => {
-          if(originalPromise === this.promise) {
-            this.promiseStatus = 'success';
-            this.promiseValue = res;
+      this.runOutsideZone(() => {
+        return this.promise.then(
+          (res) => {
+            if (originalPromise === this.promise) {
+              this.promiseStatus = 'success';
+              this.promiseValue = res;
+            }
+          },
+          (res) => {
+            if (originalPromise === this.promise) {
+              this.promiseStatus = 'error';
+              this.promiseErrors = res;
+            }
           }
-        },
-        (res) => {
-          if(originalPromise === this.promise) {
-            this.promiseStatus = 'error';
-            this.promiseErrors = res;
-          }
-        }
-      );
+        );
+      });
     }
   }
+
+
 }

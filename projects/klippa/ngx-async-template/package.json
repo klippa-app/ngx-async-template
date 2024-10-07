@@ -1,7 +1,7 @@
 {
   "name": "@klippa/ngx-async-template",
   "repository": "github:klippa-app/ngx-async-template",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "publishConfig": {
     "access": "public"
   },
