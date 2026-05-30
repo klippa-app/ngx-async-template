@@ -1,5 +1,5 @@
 import {Component, ContentChildren, Directive, Input, NgZone, QueryList, TemplateRef} from '@angular/core';
-import {debounce} from 'lodash';
+import {debounce} from 'lodash-es';
 
 function triggerChangeDetection(ngZone: NgZone): void {
   ngZone.run(() => {
